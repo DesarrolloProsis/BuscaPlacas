@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Axios from 'axios';
 
 
 Vue.use(Vuex)
@@ -39,6 +40,14 @@ export default new Vuex.Store({
 
   },
   actions: {
+
+    llenarTablasoloPlaca(context, value){
+
+      Axios
+      .get(`https://localhost:44380/api/Transacciones/${value.placa}`)
+      .then(Response => (console.log(Response.data)) )
+      
+    }
 
     
     

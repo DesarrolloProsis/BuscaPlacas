@@ -1,8 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    class="elevation-1"
+    :items="desserts"    
   >
     <template v-slot:items="props">
       <td>{{ props.item.name }}</td>
@@ -19,8 +18,7 @@
   export default {
     data () {
       return {
-        //
-        totalDesserts: 100,
+             
         desserts: [
           {
             name: 'Frozen Yogurt',

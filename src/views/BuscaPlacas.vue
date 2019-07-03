@@ -1,12 +1,13 @@
 <template>
   <v-app>
-    <h1 align="center">Grafica De Trafico</h1>
+   
     <v-container>
       <v-layout>
         <v-flex xs3>
           <BuscadorPrincipal></BuscadorPrincipal>
         </v-flex>
         <v-flex>
+            <ImagenYOYA></ImagenYOYA>
             <TablaInfo></TablaInfo>
         </v-flex>
       </v-layout>
@@ -21,13 +22,15 @@
 <script>
 import BuscadorPrincipal from "@/components/BuscadorPrincipal.vue";
 import TablaInfo from "@/components/TablaInfo.vue";
+import  ImagenYOYA from "@/components/ImagenesYOYA.vue";
 
 import { mapState, mapMutations } from "vuex";
 export default {
   name: "Graficas",
   components: {
     BuscadorPrincipal,
-    TablaInfo
+    TablaInfo,
+    ImagenYOYA
   },
   computed: {
     ...mapState([])
