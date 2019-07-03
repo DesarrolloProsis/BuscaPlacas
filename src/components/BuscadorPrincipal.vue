@@ -2,7 +2,7 @@
 <div>
     <v-container>
       <v-layout>
-      <v-flex xs3>
+      <v-flex xs12>
         <v-switch
           v-on:click="rangoFecha ? false : true"
             v-model="rangoFecha"
@@ -17,7 +17,7 @@
 
       <v-container>
         <v-layout>
-          <v-flex xs3>        
+          <v-flex xs12>        
             <v-menu            
             v-model="menuFechaInicial"
             :close-on-content-click="false"
@@ -55,7 +55,7 @@
 
       <v-container>
         <v-layout>
-          <v-flex xs3  v-if="rangoFecha"> 
+          <v-flex xs12  v-if="rangoFecha"> 
            <v-menu            
             v-model="nemuFechaFinal"          
             :close-on-content-click="false"
@@ -95,7 +95,7 @@
       <v-layout>
 
         
-        <v-flex xs3>
+        <v-flex xs12>
           <v-combobox
     v-model="model"
     :items="items"
@@ -103,7 +103,7 @@
     prepend-icon="rv_hookup"
     hint="Maximo 5 Plazas"
     label="Agrega las plazas"
-    multipl    
+    multiple    
   >
     </v-combobox>
         </v-flex>
@@ -115,7 +115,7 @@
 
     
 
-        <v-flex xs3>
+        <v-flex xs12>
           <v-text-field
             v-model="placa"
             :rules="PlacaRules"
@@ -130,7 +130,7 @@
 
     <v-container>
       <v-layout>
-             <v-flex xs3>
+             <v-flex xs12>
           <v-text-field
             v-model="tag"
             :rules="TagRules"
@@ -146,7 +146,7 @@
 
       <v-container>
         <v-layout>
-          <v-flex xs3>
+          <v-flex xs12>
       <b-alert show v-model="showDismissibleAlert" variant="danger">La Fecha Fin Debe Ser Mayor :)</b-alert>    
       </v-flex>  
         </v-layout>
@@ -154,21 +154,12 @@
 
     <v-container>
         <v-layout>
-          <v-flex xs3>
+          <v-flex xs12>
             <v-btn  outline  large color=#33BF17 @click="actualizaPlazasInicio(rangoFecha)" :disabled="oculto">Buscar</v-btn>
            <!-- <b-button @click="actualizaPlazasInicio(rangoFecha)" variant="outline-dark" size="lg" :disabled="oculto">Buscar</b-button>   -->
            </v-flex>           
         </v-layout>
       </v-container>
-
-      
-
-
-   
-
-
-       
-
   </v-form>
 </div> 
 </template>
@@ -206,7 +197,7 @@ export default {
       TagRules: [
         v => v.length <= 10 || 'El tag no puede tener mas de 10 caracteres!'
       ],
-      items: ['Cerro Gordo', 'Palmmilas', 'Libramiento', 'Tepotzotlan','Queretaro','Salamanca','Chichimequillas','Villagrand'],
+      items: ['Cerro Gordo', 'Palmilas', 'Libramiento', 'Tepotzotlan','Queretaro','Salamanca','Chichimequillas','Villagrand'],
       model: ['Cerro Gordo'],
       search: null
       }
