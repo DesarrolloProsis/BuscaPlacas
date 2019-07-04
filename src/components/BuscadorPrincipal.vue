@@ -1,5 +1,5 @@
 <template> 
-<div>
+<div>  
     <v-container>
       <v-layout>
       <v-flex xs12>
@@ -207,7 +207,8 @@ export default {
       placa: '',      
       PlacaRules: [
         v => !!v || 'El numero de placa es necesario',        
-        v => v.length <= 10 || 'La placa no puede tener mas de 10 caracteres!'
+        v => v.length <= 10 || 'La placa no puede tener mas de 10 caracteres!',
+        v => v.length >=3 || 'La placa debe tener mas de 3 caracteres'
       ],
       TagRules: [
         v => v.length <= 10 || 'El tag no puede tener mas de 10 caracteres!'
@@ -263,77 +264,46 @@ export default {
 
   methods: { 
 
-    ...mapActions['llenarTablasoloPlaca'],
+    ...mapActions['llenarTablasoloPlaca','llenarTablafull'],
     
     
     validarAntesdeEnviar(){
 
-      if(this.soloPlaca == false){      
+      if(this.soloPlaca != "primary"){      
 
-      if(this.tag == ''){
-
+      
           var Info = {
             'fechaInicio': '',
             'fechaFin': '',
             'placa': '',
+            'tag': '',
             'plazas': [],
             'rangoFecha': false
           }
 
-          Info.fechaInicio = this.fechaInicio,
-          Info.fechaFin = this.fechaFin,
+          Info.fechaInicio = moment(this.fechaInicio).format("MM-DD-YYYY"),
+          Info.fechaFin =  moment(this.fechaFin).format("MM-DD-YYYY"),
           Info.placa = this.placa,
+          Info.tag = this.tag,
           Info.plazas = this.model,
           Info.rangoFecha = this.rangoFecha
-
+          this.$store.dispatch('llenarTablafull',Info)
           alert(JSON.stringify(Info))
 
       }
       else{
-        
-          var Info = {
-            'fechaInicio': '',
-            'fechaFin': '',
-            'placa': '',
-            'tag':'',
-            'plazas': [],
-            'rangoFecha': false
-          }
 
-          Info.fechaInicio = this.fechaInicio,
-          Info.fechaFin = this.fechaFin,
-          Info.placa = this.placa,
-          Info.plazas = this.model,
-          Info.rangoFecha = this.rangoFecha
-          Info.tag = this.tag
-        }
-      }
-      else{
-
-        if(this.tag == ''){
 
             var Info = {
             'placa': '',
+            'tag': '',
             'plazas': [],            
           }
           Info.placa = this.placa,
+          Info.tag = this.tag,
           Info.plazas = this.model,        
           this.$store.dispatch('llenarTablasoloPlaca', Info)
           alert(JSON.stringify(Info))
-
-      }
-      else{
-        
-          var Info = {
-            'placa': '',
-            'tag':'',
-            'plazas': [],
-            
-          }
-          Info.placa = this.placa,
-          Info.plazas = this.model,
-          Info.tag = this.tag
-        }
 
       }
 

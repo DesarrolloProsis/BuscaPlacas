@@ -6,7 +6,7 @@
         <v-flex xs3>
           <BuscadorPrincipal></BuscadorPrincipal>
         </v-flex>
-        <v-flex>
+        <v-flex xs9>
             <ImagenYOYA></ImagenYOYA>
             <TablaInfo></TablaInfo>
         </v-flex>

@@ -12,7 +12,9 @@ export default new Vuex.Store({
     plazaActual: 'Todas las Plazas',    
     fechaInicio: new Date().toISOString().substr(0, 10),
     fechaFin:  new Date().toISOString().substr(0, 10),
-    rangoFecha: null
+    rangoFecha: null,
+    datosTabla: []
+
 
     
   },
@@ -36,6 +38,10 @@ export default new Vuex.Store({
     rangoFechaMutation(state, rangoNuevo){
       state.rangoFecha = rangoNuevo
     },
+    datosTablaMutation(state,array){         
+      state.datosTabla = array
+
+    }
 
 
   },
@@ -45,9 +51,32 @@ export default new Vuex.Store({
 
       Axios
       .get(`https://localhost:44380/api/Transacciones/${value.placa}`)
-      .then(Response => (console.log(Response.data)) )
+      .then(Response => (context.commit('datosTablaMutation', Response.data)))   
       
+    },
+    llenarTablafull(context, value){
+
+    
+      if(value.rangoFecha == "primary"){
+
+
+        Axios
+        .get(`https://localhost:44380/api/Transacciones/${value.placa}/${  value.tag == ''? null : value.tag}/${value.fechaInicio}/${value.fechaFin}`)        
+        .then(Response1 => (context.commit('datosTablaMutation', Response1.data)))   
+     
+
+      }
+      else{
+        
+        
+          Axios
+          .get(`https://localhost:44380/api/Transacciones/${value.placa}/${  value.tag == ''? null : value.tag}/${value.fechaInicio}/${value.fechaInicio}`)
+          .then(Response3 => (context.commit('datosTablaMutation', Response3.data)))         
+
+      }
+
     }
+
 
     
     
